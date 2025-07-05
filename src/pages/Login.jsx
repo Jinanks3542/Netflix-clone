@@ -6,19 +6,18 @@ const Login = () => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-    const {user,logIn} = UserAuth()
+    const {user,login} = UserAuth()
     const navigate = useNavigate();
   
     const handleFormSubmit = async(e)=>{
       e.preventDefault();
       try {
-        await logIn(email,password)
+        await login(email,password)
         navigate('/')
       } catch (error) {
         console.log(error);
         
       }
-      
       
     }
     return (

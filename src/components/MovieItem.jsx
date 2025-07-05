@@ -4,10 +4,13 @@ import {FaHeart, FaRegHeart} from 'react-icons/fa'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { UserAuth } from '../context/authContext';
+import {useNavigate} from 'react-router-dom'
 
 function MovieItem({movie}) {
     const [like,setLike]=useState(false)
     const { user } = UserAuth()
+
+    const navigate=useNavigate()
 
     const {title, backdrop_path,poster_path} = movie;
 
@@ -25,8 +28,11 @@ function MovieItem({movie}) {
         alert ('Login to save a movie')
       }
     }
+
+    const params = new URLSearchParams( ).toString()
+
   return (
-    <div className='relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg
+    <div onClick={() => navigate(`/MovieTrailer/${params}`) } className='relative w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block rounded-lg
     overflow-hidden cursor-pointer m-2'>
       <img 
       className='w-full h-40 block object-cover object-top'
